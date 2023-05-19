@@ -1,0 +1,14 @@
+##get
+GET http://localhost:3000/api/users
+
+###POST
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "name": "danChu",
+    "email": "123@123.com",
+    "password": "122@Case1"
+}
+
+
