@@ -6,11 +6,6 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 // const auth = require("../middleware/auth");
 
-// router.get("/me", auth, async (req, res) => {
-//   const user = await User.findById(req.user._id).select("-password");
-//   res.send(user);
-// });
-
 // get all users
 router.get("/", async (req, res) => {
   const users = await User.find();

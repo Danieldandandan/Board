@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const passwordComplexity = require("joi-password-complexity");
 const _ = require("lodash");
+
+const privateKey = "MyPrivateKey"; // NEEDS TO BE HIDDEN
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -31,7 +34,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign(_.pick(this, ["_id", "isAdmin"]), "MyPrivateKey");
+  const token = jwt.sign(_.pick(this, ["_id", "role"]), privateKey);
   return token;
 };
 
