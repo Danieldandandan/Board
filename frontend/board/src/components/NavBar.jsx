@@ -1,15 +1,24 @@
 import { NavLink, Link } from "react-router-dom";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { getCurrentUser } from "../services/authService";
 
 const NavBar = () => {
+  const [user, setUser] = useState(getCurrentUser());
+
+  const handleSignOut = () => {
+    console.log("clicked");
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+  console.log(user);
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <Link class="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/">
           Board
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -17,19 +26,19 @@ const NavBar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
             {/* <NavLink class="nav-item" to="/signup">
               <a class="nav-link" href="#">
                 Features
               </a>
             </NavLink> */}
-            {localStorage.JWT && <a>has user</a>}
-            {!localStorage.JWT && (
-              <NavLink class="nav-item" to="/login">
-                <a class="nav-link active" aria-current="page" href="#">
+            {localStorage.token && <button onClick={handleSignOut}> Sign Out </button>}
+            {!localStorage.token && (
+              <NavLink className="nav-item" to="/login">
+                <a className="nav-link active" aria-current="page" href="#">
                   Login
                 </a>
               </NavLink>
