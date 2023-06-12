@@ -10,6 +10,7 @@ const NavBar = () => {
     localStorage.removeItem("token");
     setUser(null);
   };
+
   console.log(user);
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -30,28 +31,15 @@ const NavBar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            {/* <NavLink class="nav-item" to="/signup">
-              <a class="nav-link" href="#">
-                Features
-              </a>
-            </NavLink> */}
-            {localStorage.token && <button onClick={handleSignOut}> Sign Out </button>}
-            {!localStorage.token && (
+            {user && <h2> welcome {user.name}</h2>}
+            {user && <button onClick={handleSignOut}> Sign Out </button>}
+            {!user && (
               <NavLink className="nav-item" to="/login">
                 <a className="nav-link active" aria-current="page" href="#">
                   Login
                 </a>
               </NavLink>
             )}
-
-            {/* <li class="nav-item">
-              <a class="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li> */}
           </ul>
         </div>
       </div>

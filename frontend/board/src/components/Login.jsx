@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
 import auth from "../services/authService";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
+
 class Login extends Form {
   state = {
     data: { username: "", password: "" },
@@ -37,10 +38,11 @@ class Login extends Form {
           <div className="col-md-4 col-md-offset-4 mx-auto">
             <h1>Login</h1>
             <form onSubmit={this.handleSubmit}>
-              {this.renderInput("username", "Username")}
+              {this.renderInput("username", "Email")}
               {this.renderInput("password", "Password", "password")}
               {this.renderButton("Login")}
             </form>
+            <Link to="/signUp"> dont have account? click here to sign up</Link>
           </div>
         </div>
       </div>
