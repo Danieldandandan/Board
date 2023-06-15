@@ -23,7 +23,7 @@ describe(api, () => {
       };
       const res = await request(server).post(api).send(body);
       expect(res.status).toBe(400);
-      console.log(res);
+      // console.log(res);
     });
     it("should return 400 if email is not in the database", async () => {
       const body = {

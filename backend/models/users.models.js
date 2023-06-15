@@ -31,6 +31,9 @@ const userSchema = new mongoose.Schema({
   activity: {
     type: [String],
   },
+  company: {
+    type: String,
+  },
 });
 
 userSchema.methods.generateAuthToken = function () {

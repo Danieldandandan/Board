@@ -1,0 +1,25 @@
+###GET
+GET http://localhost:8888/api/events
+
+
+
+###POST
+POST http://localhost:8888/api/events
+Content-Type: application/json
+
+{
+    "title": "firstTitle",
+    "describtion": "my first block",
+    "member": [],
+    "company": "Company A",
+    "stage": "Backlog"
+}
+
+
+### POST
+POST http://localhost:8888/api/events/648b3a5b27967e1d235e04ff/addMember
+Content-Type: application/json
+
+{
+    "id": "64879513dc56b85ae597963f"
+}

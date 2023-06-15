@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 // register a user
 router.post("/", async (req, res) => {
-  console.log("calling register");
+  // console.log("calling register");
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.message);
 
