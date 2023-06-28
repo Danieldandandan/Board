@@ -19,7 +19,7 @@ class EventBoard extends Component {
   async componentDidMount() {
     // getAsyncEvents();
     const events = await getAsyncEvents();
-    console.log(events);
+    // console.log(events);
     const stages = getStages();
     this.setState({ events, stages });
   }
@@ -28,7 +28,7 @@ class EventBoard extends Component {
     return data;
   }
   getDisplay = (event) => {
-    console.log(event);
+    // console.log(event);
     if (this.state.display === "card") return <EventCard data={event} />;
     return event.title;
   };

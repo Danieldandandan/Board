@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const EventCard = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <div className="card m-2" style={{ width: "18rem" }}>

@@ -25,7 +25,9 @@ router.post("/", async (req, res) => {
    * @return {object} - The created Event
    */
   const event = req.body;
+  console.log("gotEvent", event);
   const { error } = validate(event);
+  console.log("error: ", error);
   if (error) return res.status(400).send(error.message);
 
   let savedEvent = new Event(_.pick(event, ["title", "member", "describtion", "company", "stage"]));

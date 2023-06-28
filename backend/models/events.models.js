@@ -26,6 +26,7 @@ const eventSchema = new mongoose.Schema({
   },
   describtion: {
     type: String,
+    max: 1024,
   },
   company: {
     type: String,
@@ -51,6 +52,7 @@ function validateEvent(event) {
     company: Joi.string(),
     stage: Joi.string(),
     startDate: Joi.date(),
+    admin: Joi.object(),
   });
   return schema.validate(event);
 }
