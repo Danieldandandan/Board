@@ -31,7 +31,6 @@ class SignUp extends Form {
     email: Joi.string().email().required().label("Email"),
   };
   render() {
-    // if (auth.getCurrentUser()) return <Navigate to="/" />;
     return (
       <div className="container">
         <div className="row">

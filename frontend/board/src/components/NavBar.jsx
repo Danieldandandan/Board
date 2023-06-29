@@ -6,9 +6,9 @@ const NavBar = () => {
   const [user, setUser] = useState(getCurrentUser());
 
   const handleSignOut = () => {
-    console.log("clicked");
     localStorage.removeItem("token");
     setUser(null);
+    window.location.reload();
   };
 
   console.log(user);

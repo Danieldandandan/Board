@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+const buttonStyle = {
+  position: "relative",
+  button: "80px",
+};
 
 const EventCard = ({ data }) => {
-  // console.log(data);
   return (
     <div>
       <div className="card m-2" style={{ width: "18rem" }}>
@@ -10,12 +15,20 @@ const EventCard = ({ data }) => {
           {/* <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6> */}
           <p className="card-text">{data.describtion}</p>
           {data.admin && <p className="card-text">{data.admin.name}</p>}
-          <a href="#" className="card-link">
-            Event Details
-          </a>
-          <a href="#" className="card-link">
-            Another link
-          </a>
+          <div>
+            <Link style={{ ...buttonStyle, left: "10px" }} to={"/event/Info/" + data._id}>
+              <button type="button" class="btn btn-outline-info btn-sm">
+                Info
+              </button>
+            </Link>
+            <button
+              style={{ ...buttonStyle, left: "100px" }}
+              type="button"
+              class="btn btn-outline-success btn-sm"
+            >
+              Next Stage
+            </button>
+          </div>
         </div>
       </div>
     </div>

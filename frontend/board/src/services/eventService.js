@@ -1,5 +1,6 @@
 import http from "./httpService";
 import config from "../config.json";
+import { getCurrentUser } from "./authService";
 const endPoint = config.apiEndpoint + "events";
 
 export async function getAsyncEvents() {
@@ -8,12 +9,23 @@ export async function getAsyncEvents() {
   return eventss;
 }
 
+export async function getEventDetail(id) {
+  // console.log(id);
+  const user = getCurrentUser();
+  const url = endPoint + "/" + id;
+  console.log(user);
+  // console.log(url);
+  const { data: event } = await http.get(url);
+  // console.log(event);
+  return event;
+}
+
 export async function createEvent(event) {
   console.log(event);
 
   const { data: events } = await http.post(endPoint, event);
 
-  return "123";
+  return events;
 }
 
 export default {

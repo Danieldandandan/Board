@@ -53,7 +53,6 @@ class CreateBacklog extends Form {
               {this.renderTextArea("detail", "Detail")}
               {this.renderButton("Confirm")}
             </form>
-            {/* <Link to="/signUp"> dont have account? click here to sign up</Link> */}
           </div>
         </div>
       </div>

@@ -5,18 +5,31 @@ const _ = require("lodash");
 
 const router = express.Router();
 
-// GET /
+// GET Get a list of events
 router.get("/", async (req, res) => {
   /**
    * Get a list of events
    *
    * @return {object[]} - Array of events
    */
-  const events = await Event.find();
+  const events = await Event.find().select(["title", "describtion", "stage"]);
   res.status(200).send(events);
 });
 
-// POST
+//Get get an event with full detail
+router.get("/:id", async (req, res) => {
+  console.log("calling");
+  const eventId = req.params.id;
+  const event = await Event.findById(eventId);
+  // if (ev)
+  if (!event) return res.status(400).send("Event not found");
+
+  // console.log(event);
+  // if (event.company)
+  return res.status(200).send(event);
+});
+
+// POST Post a new Evnet
 router.post("/", async (req, res) => {
   /**
    * Post a new Evnet
@@ -36,7 +49,7 @@ router.post("/", async (req, res) => {
   res.send(savedEvent);
 });
 
-// POST
+// POST Add a Member to this event
 router.post("/:id/addMember", async (req, res) => {
   /**
    * Add a Member to this event
@@ -66,7 +79,5 @@ router.post("/:id/addMember", async (req, res) => {
   event = await event.save();
   res.send(event);
 });
-
-router.get("/:id", async (req, res) => {});
 
 module.exports = router;

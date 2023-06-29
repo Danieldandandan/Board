@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import EventCard from "./eventCard";
 import { getAsyncEvents, getEvents } from "../../services/eventService";
 import { getStages } from "../../services/stageService";
+import { Link } from "react-router-dom";
 import Table from "../common/table";
+import authService from "../../services/authService";
 
 const containerStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(5, 1fr)", // Set your desired value for grid-template-columns
   gap: "16px", // Set your desired value for gap between tables
+  // width: "80%",
 };
 
 class EventBoard extends Component {
@@ -17,9 +20,8 @@ class EventBoard extends Component {
     display: "card",
   };
   async componentDidMount() {
-    // getAsyncEvents();
+    console.log("calling");
     const events = await getAsyncEvents();
-    // console.log(events);
     const stages = getStages();
     this.setState({ events, stages });
   }
@@ -35,17 +37,26 @@ class EventBoard extends Component {
 
   render() {
     const { events, stages } = this.state;
-
+    const user = authService.getCurrentUser();
     return (
-      <div className="container" style={containerStyle}>
-        {stages.map((stage) => (
-          <Table
-            columns={[stage]}
-            data={this.getData(stage)}
-            key={stage}
-            display={this.getDisplay}
-          />
-        ))}
+      <div>
+        {user && (
+          <Link to="/create">
+            <button type="button" class="btn btn-success">
+              create new Idea
+            </button>
+          </Link>
+        )}
+        <div style={containerStyle}>
+          {stages.map((stage) => (
+            <Table
+              columns={[stage]}
+              data={this.getData(stage)}
+              key={stage}
+              display={this.getDisplay}
+            />
+          ))}
+        </div>
       </div>
     );
   }
