@@ -12,14 +12,12 @@ class Form extends Component {
   };
   validate = () => {
     const options = { abortEarly: false };
-    // console.log(this.state.data);
     const { error } = Joi.validate(this.state.data, this.schema, options);
     if (!error) return null;
     const errors = {};
     for (let item of error.details) {
       errors[item.path[0]] = item.message;
     }
-    // console.log(errors);
     return errors;
   };
   validateProperty = ({ name, value }) => {
@@ -38,7 +36,6 @@ class Form extends Component {
   };
 
   handleChange = ({ currentTarget: input }) => {
-    // console.log(input.name);
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);
     if (errorMessage) errors[input.name] = errorMessage;

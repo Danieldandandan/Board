@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for backend/models/users.models.js</title>
+    <title>Code coverage report for backend/models/events.models.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">backend/models</a> users.models.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">backend/models</a> events.models.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/16</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
@@ -122,12 +122,10 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -141,6 +139,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,85 +170,85 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Joi = require("joi");
-const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
-const passwordComplexity = require("joi-password-complexity");
-const _ = require("lodash");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require("mongoose");
+const Joi = require("joi");
 &nbsp;
-const privateKey = "MyPrivateKey"; // NEEDS TO BE HIDDEN
-&nbsp;
-const userSchema = new mongoose.Schema({
+const shortUserSchema = new mongoose.Schema({
   name: {
     type: String,
-    minlength: 5,
-    maxlength: 50,
+    required: true,
   },
-  email: {
+  _id: {
     type: String,
     required: true,
-    minlength: 5,
-    maxlength: 255,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 1024,
-  },
-  role: {
-    type: [String],
-  },
-  activity: {
-    type: [String],
-  },
-  company: {
-    type: String,
   },
 });
 &nbsp;
-userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign(_.pick(this, ["_id", "role", "name", "company"]), privateKey);
-  return token;
-};
+const eventSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    max: 50,
+    required: true,
+  },
+  member: {
+    type: [shortUserSchema],
+  },
+  admin: {
+    type: shortUserSchema,
+  },
+  describtion: {
+    type: String,
+    max: 1024,
+  },
+  company: {
+    type: String,
+    required: true,
+  },
+  startDate: {
+    type: Date,
+    default: Date.now,
+  },
+  stage: {
+    type: String,
+    default: "Backlog",
+  },
+});
 &nbsp;
-const User = mongoose.model("User", userSchema);
+const Event = mongoose.model("Event", eventSchema);
 &nbsp;
-function validateUser(user) {
-  const schema = Joi.object({
-    name: Joi.string().min(5).max(50).required(),
-    email: Joi.string().min(5).max(255).email().required(),
-    company: Joi.string().required(),
-    password: passwordComplexity(),
+function <span class="fstat-no" title="function not covered" >validateEvent(</span>event) {
+  const schema = <span class="cstat-no" title="statement not covered" >Joi.object({</span>
+    title: Joi.string().max(50).required(),
+    member: Joi.array().items(Joi.string()),
+    describtion: Joi.string().max(1024),
+    company: Joi.string(),
+    stage: Joi.string(),
+    startDate: Joi.date(),
+    admin: Joi.object(),
   });
-&nbsp;
-  return schema.validate(user);
+<span class="cstat-no" title="statement not covered" >  return schema.validate(event);</span>
 }
 &nbsp;
-exports.User = User;
-exports.validate = validateUser;
-exports.userSchema = userSchema;
+exports.Event = Event;
+exports.validate = validateEvent;
+exports.eventSchema = eventSchema;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

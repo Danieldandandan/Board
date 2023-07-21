@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import EventCard from "./eventCard";
-import { getAsyncEvents, getEvents } from "../../services/eventService";
+import { getAsyncEvents, getEventByCompany, getEvents } from "../../services/eventService";
 import { getStages } from "../../services/stageService";
 import { Link } from "react-router-dom";
 import Table from "../common/table";
@@ -20,8 +20,15 @@ class EventBoard extends Component {
     display: "card",
   };
   async componentDidMount() {
-    console.log("calling");
-    const events = await getAsyncEvents();
+    const user = authService.getCurrentUser();
+    let events = [];
+    if (user) {
+      try {
+        events = await getEventByCompany(user.company);
+      } catch (e) {
+        console.log(e);
+      }
+    }
     const stages = getStages();
     this.setState({ events, stages });
   }
@@ -30,7 +37,6 @@ class EventBoard extends Component {
     return data;
   }
   getDisplay = (event) => {
-    // console.log(event);
     if (this.state.display === "card") return <EventCard data={event} />;
     return event.title;
   };
@@ -42,7 +48,7 @@ class EventBoard extends Component {
       <div>
         {user && (
           <Link to="/create">
-            <button type="button" class="btn btn-success">
+            <button type="button" className="btn btn-success">
               create new Idea
             </button>
           </Link>

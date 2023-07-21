@@ -16,16 +16,19 @@ router.get("/", async (req, res) => {
   res.status(200).send(events);
 });
 
+// get events by company name
+router.get("/company:company", async (req, res) => {
+  const company = req.params.company;
+  const event = await Event.find({ company: company });
+  return res.status(200).send(event);
+});
+
 //Get get an event with full detail
-router.get("/:id", async (req, res) => {
-  console.log("calling");
+router.get("/id:id", async (req, res) => {
   const eventId = req.params.id;
   const event = await Event.findById(eventId);
-  // if (ev)
   if (!event) return res.status(400).send("Event not found");
 
-  // console.log(event);
-  // if (event.company)
   return res.status(200).send(event);
 });
 
@@ -38,9 +41,7 @@ router.post("/", async (req, res) => {
    * @return {object} - The created Event
    */
   const event = req.body;
-  console.log("gotEvent", event);
   const { error } = validate(event);
-  console.log("error: ", error);
   if (error) return res.status(400).send(error.message);
 
   let savedEvent = new Event(_.pick(event, ["title", "member", "describtion", "company", "stage"]));
@@ -78,6 +79,17 @@ router.post("/:id/addMember", async (req, res) => {
 
   event = await event.save();
   res.send(event);
+});
+
+router.put("/", async (req, res) => {
+  const event = req.body;
+  let e = await Event.findById(event._id);
+  if (!e) return res.status(404).send("Event not found");
+  for (const key in event) {
+    if (e[key]) e[key] = event[key];
+  }
+  e = await e.save();
+  return res.send(event);
 });
 
 module.exports = router;

@@ -7,12 +7,11 @@ import { Navigate, Link } from "react-router-dom";
 
 class SignUp extends Form {
   state = {
-    data: { name: "", password: "", email: "" },
+    data: { name: "", password: "", email: "", company: "" },
     errors: {},
   };
   doSubmit = async () => {
     const { data } = this.state;
-    // console.log("do submit", data);
     try {
       await user.signUp(data);
       window.location = "/";
@@ -29,6 +28,7 @@ class SignUp extends Form {
     name: Joi.string().required().label("name"),
     password: Joi.string().required().label("Password"),
     email: Joi.string().email().required().label("Email"),
+    company: Joi.string().required().label("company"),
   };
   render() {
     return (
@@ -40,6 +40,7 @@ class SignUp extends Form {
               {this.renderInput("name", "Username")}
               {this.renderInput("email", "email")}
               {this.renderInput("password", "Password", "password")}
+              {this.renderInput("company", "company")}
               {this.renderButton("Login")}
             </form>
             {/* <Link to="/signUp"> dont have account? click here to sign up</Link> */}

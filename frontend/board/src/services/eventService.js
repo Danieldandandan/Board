@@ -4,31 +4,29 @@ import { getCurrentUser } from "./authService";
 const endPoint = config.apiEndpoint + "events";
 
 export async function getAsyncEvents() {
-  const { data: eventss } = await http.get(endPoint);
-  // console.log(eventss);
+  const { data: events } = await http.get(endPoint);
+  return events;
+}
+
+export async function getEventByCompany(company) {
+  const { data: eventss } = await http.get(endPoint + "/company" + company);
   return eventss;
 }
 
 export async function getEventDetail(id) {
-  // console.log(id);
   const user = getCurrentUser();
-  const url = endPoint + "/" + id;
+  const url = endPoint + "/id" + id;
   console.log(user);
-  // console.log(url);
   const { data: event } = await http.get(url);
-  // console.log(event);
   return event;
 }
 
 export async function createEvent(event) {
-  console.log(event);
-
   const { data: events } = await http.post(endPoint, event);
-
   return events;
 }
 
-export default {
-  getAsyncEvents,
-  createEvent,
-};
+export async function updateEvent(event) {
+  const { data: newEvent } = await http.put(endPoint, event);
+  return newEvent;
+}

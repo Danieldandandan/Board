@@ -20,7 +20,7 @@ class CreateBacklog extends Form {
     const newEvent = {
       title: data.title,
       describtion: data.detail,
-      company: "TO BE BUILD",
+      company: user.company,
       admin: {
         name: user.name,
         _id: user._id,

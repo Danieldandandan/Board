@@ -74,6 +74,7 @@ describe(api, () => {
         name: "user2",
         email: "123@gmail.com",
         password: "123@Test1",
+        company: "ABC",
       };
       const res = await request(server).post(api).send(user);
       expect(res.status).toBe(200);

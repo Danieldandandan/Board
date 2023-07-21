@@ -1,43 +1,55 @@
 import React, { Component, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getEventDetail } from "../../services/eventService";
+import Form from "../common/form";
 
-const EventInfo = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  const { id } = useParams();
-  const [event, setEvent] = useState({});
-  useEffect(() => {
-    // const event = await getEvent();
-    async function getEvent(id) {
-      const event = await getEventDetail(id);
-      setEvent(event);
-    }
-    getEvent(id);
-  }, []);
+class Info extends Form {
+  state = {
+    data: {
+      title: "",
+      descibtion: "",
+      member: [],
+      stage: "",
+      // startDate: "",
+    },
+  };
 
-  console.log(id);
-  console.log(event);
-  return (
-    <div>
-      <h1> EVENT INFO BOARD</h1>
-      {/* <p>{event}</p> */}
-    </div>
-  );
-};
+  async componentDidMount() {
+    const { id } = this.props;
+    console.log(id);
+    const event = await getEventDetail(id);
+    console.log(event);
+    this.setState({ data: event });
+    // console.log(event);
+  }
+
+  render() {
+    const { data } = this.state;
+    console.log(data);
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md mx-auto">
+            <form onSubmit={this.handleSubmit}>
+              <h1> {data.title}</h1>
+              <h3> {data.describtion}</h3>
+              <h3> {data.member}</h3>
+              <h3> {data.stage} </h3>
+              {/* <h3> {data.startDate} </h3> */}
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 // export default EventInfo;
-// class EventInfo extends Component {
-//   state = {};
-//   async componentDidMount() {
-//     // const { match } = this.props;
-//     // const { id } = match.params;
-//     // console.log(this.props);
-//   }
-//   render() {
-//     // const { id } = useParams();
-//     // console.log(id);
-//     return <h1> EVENT INFO BOARD</h1>;
-//   }
-// }
+
+const EventInfo = () => {
+  const { id } = useParams();
+  console.log(id);
+  return <Info id={id}></Info>;
+};
 
 export default EventInfo;

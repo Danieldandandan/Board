@@ -11,10 +11,9 @@ const NavBar = () => {
     window.location.reload();
   };
 
-  console.log(user);
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Board
         </Link>
