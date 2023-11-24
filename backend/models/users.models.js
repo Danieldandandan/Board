@@ -41,6 +41,17 @@ userSchema.methods.generateAuthToken = function () {
   return token;
 };
 
+const shortUserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  _id: {
+    type: String,
+    required: true,
+  },
+});
+
 const User = mongoose.model("User", userSchema);
 
 function validateUser(user) {
@@ -54,6 +65,7 @@ function validateUser(user) {
   return schema.validate(user);
 }
 
+exports.shortUserSchema = shortUserSchema;
 exports.User = User;
 exports.validate = validateUser;
 exports.userSchema = userSchema;

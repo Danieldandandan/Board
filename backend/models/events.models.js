@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
+const { shortUserSchema } = require("./users.models");
 
-const shortUserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+const shortEventSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true,
@@ -56,7 +53,7 @@ function validateEvent(event) {
   });
   return schema.validate(event);
 }
-
+exports.shortEventSchema = shortUserSchema;
 exports.Event = Event;
 exports.validate = validateEvent;
 exports.eventSchema = eventSchema;
